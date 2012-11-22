@@ -1,0 +1,2 @@
+Insert 	 110	 At node6	 TIME: 	114.6470764087349
+Insert 	 171	 At node6	 TIME: 	233.90869318809038

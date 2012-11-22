@@ -1,0 +1,3 @@
+Insert 	 110	 At node5	 TIME: 	72.42734226611178
+Insert 	 171	 At node5	 TIME: 	120.14856792108291
+Remove 	{190}	 At node5	 TIME: 	120.28314635816146

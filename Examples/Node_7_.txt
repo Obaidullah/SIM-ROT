@@ -1,0 +1,3 @@
+Remove 	{190}	 At node7	 TIME: 	20.184310915563035
+Insert 	 110	 At node7	 TIME: 	117.20495427168568
+Insert 	 171	 At node7	 TIME: 	236.53568164621268
