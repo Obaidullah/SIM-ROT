@@ -1,2 +1,0 @@
-Insert 	 110	 At node4	 TIME: 	98.8693828977935
-Remove 	{190}	 At node4	 TIME: 	120.21712965819906

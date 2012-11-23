@@ -83,7 +83,7 @@ public class ProcessingCompletionEventV3 extends Unit{
                         int bestPathNextHop = rib.getBestPathNextHop(withdrawns.get(i));
                         TIntArrayList exportedTo = rib.getExportedTo(withdrawns.get(i));
                         rib.removeEntry(withdrawns.get(i),peer);
-                        buffer.write("Remove \t" +this.message.getWithdrawans()+"\t At node"+this.processor.getAS()+"\t TIME: \t"+GetTime.getNextSchedule(kernel)+"\n");
+                        buffer.write("1\t"+GetTime.getNextSchedule(kernel)+"\n");
                         buffer.flush();
                         //bufout.write("Remove\t"+this.message.getWithdrawans()+"\t at Node \t"+this.processor.getAS()+"\t Time \t"+GetTime.getNextSchedule(kernel)+"\n");
                         //bufout.flush();
@@ -176,7 +176,7 @@ public class ProcessingCompletionEventV3 extends Unit{
                         }
                     } else {
                         rib.addEntry(prefix,src,path);
-                        buffer.write("Insert \t " +this.message.getAnnouncedPrefix()+"\t At node"+this.processor.getAS()+"\t TIME: \t"+GetTime.getNextSchedule(kernel)+"\n");
+                        buffer.write("2\t"+GetTime.getNextSchedule(kernel)+"\n");
                         //bufout.write("Insert \t"+this.message.getAnnouncedPrefix()+"\t at Node \t"+this.processor.getAS()+"\t Time \t"+GetTime.getNextSchedule(kernel)+"\n");
                         //System.out.print("\n announcement prefix "+ this.message.getAnnouncedPrefix()+ "at Node" + this.processor.getAS() + "\t Time: \t" + GetTime.getNextSchedule(kernel) +"\n");
                         buffer.flush();
