@@ -34,7 +34,7 @@ public class ArrivalEvent extends Unit{
         this.kernel = kernel;
         this.nextSchedule = nextSchedule;
     }
-    public void act() {
+    public void act(){
         Node receiver = Topology.getNodeByAddress(recepient);
         if(receiver.isInitialized()) {
             ArrayList<Message> inputQueue = receiver.getMessageQueue();

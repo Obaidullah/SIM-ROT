@@ -295,7 +295,7 @@ public class Generator {
     
     private void addPeers(int selectionType,int nodesType) {
         if(nodesType==Values.Middle) {
-            for(int i=0;i<middleNodes.size();i++) {                
+            for(int i=0;i<middleNodes.size();i++) { 
                 Node node = graph.getNode(middleNodes.get(i));
                 int numberOfPeers = parameters.getP_m_m().getNoPeeringLinks(random);
                 //System.out.println(numberOfPeers);

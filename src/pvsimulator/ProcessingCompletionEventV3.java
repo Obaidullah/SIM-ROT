@@ -66,8 +66,8 @@ public class ProcessingCompletionEventV3 extends Unit{
     		String nameOfFile = "Node_"+node.getAS()+"_.txt";
             FileWriter dumpfilestream = new FileWriter(nameOfFile, true);
             BufferedWriter buffer = new BufferedWriter(dumpfilestream);
-    	//FileWriter fstream = new FileWriter("NodeChangesAtExactTime.txt", true);
-        //BufferedWriter bufout = new BufferedWriter(fstream);    
+    	FileWriter fstream = new FileWriter("NodeChangesAtExactTime.txt", true);
+        BufferedWriter bufout = new BufferedWriter(fstream);    
         RIBV2 rib = (RIBV2) node.getRib();
         TIntObjectHashMap withd = new TIntObjectHashMap();
         TIntObjectHashMap upds = new TIntObjectHashMap();
@@ -85,8 +85,8 @@ public class ProcessingCompletionEventV3 extends Unit{
                         rib.removeEntry(withdrawns.get(i),peer);
                         buffer.write("1\t"+GetTime.getNextSchedule(kernel)+"\n");
                         buffer.flush();
-                        //bufout.write("Remove\t"+this.message.getWithdrawans()+"\t at Node \t"+this.processor.getAS()+"\t Time \t"+GetTime.getNextSchedule(kernel)+"\n");
-                        //bufout.flush();
+                        bufout.write("1\t"+GetTime.getNextSchedule(kernel)+"\n");
+                        bufout.flush();
                         //System.out.print("\n withrawal prefix "+ this.message.getWithdrawans() + "at Node" + this.processor.getAS() + "\t Time: \t" + GetTime.getNextSchedule(kernel) +"\n");
                         if(bestPathNextHop == peer) {
                             if(rib.havePath(withdrawns.get(i))) {
@@ -139,6 +139,8 @@ public class ProcessingCompletionEventV3 extends Unit{
                             rib.replaceEntry(prefix,src,path,false);
                         } else {
                             rib.addEntry(prefix,src,path);
+                            buffer.write("2\t"+GetTime.getNextSchedule(kernel)+"\n");
+                            buffer.flush();
                         }
                         TIntArrayList toBeExportedTOStateful = rib.exportedTO(oldPathNextHop,processor);
                         rib.decisionProcess(prefix,node.getAS());
@@ -177,9 +179,10 @@ public class ProcessingCompletionEventV3 extends Unit{
                     } else {
                         rib.addEntry(prefix,src,path);
                         buffer.write("2\t"+GetTime.getNextSchedule(kernel)+"\n");
-                        //bufout.write("Insert \t"+this.message.getAnnouncedPrefix()+"\t at Node \t"+this.processor.getAS()+"\t Time \t"+GetTime.getNextSchedule(kernel)+"\n");
+                        bufout.write("2\t"+GetTime.getNextSchedule(kernel)+"\n");
                         //System.out.print("\n announcement prefix "+ this.message.getAnnouncedPrefix()+ "at Node" + this.processor.getAS() + "\t Time: \t" + GetTime.getNextSchedule(kernel) +"\n");
                         buffer.flush();
+                        bufout.flush();
                         rib.decisionProcess(prefix,node.getAS());
                         TIntArrayList toBeExportedTo = rib.exportedTO(rib.getBestPathNextHop(prefix),node);
                         upds.put(prefix,toBeExportedTo);
@@ -274,6 +277,8 @@ public class ProcessingCompletionEventV3 extends Unit{
                 }
             }
         }
+        buffer.close();
+        bufout.close();
     	}
    
             catch(Exception ex) {
